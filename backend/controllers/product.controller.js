@@ -32,7 +32,7 @@ const updateProduct = async (req, res) => {
   if (!mongoose.Types.ObjectId.isValid(id)) {
     return res
       .status(404)
-      .json({ sucess: false, message: "Invalid Product Id" });
+      .json({ success: false, message: "Invalid Product Id" });
   }
 
   try {
@@ -40,7 +40,7 @@ const updateProduct = async (req, res) => {
       new: true,
     });
     res.status(200).json({
-      sucess: true,
+      success: true,
       message: "produt is sucessfully updated",
       data: update,
     });
@@ -58,7 +58,6 @@ const getProduct = async (req, res) => {
       message: "Products Retrieve sucessfully",
       data: products,
     });
-    
   } catch (error) {
     console.log("Error in get product", error.message);
     res.status(500), json({ success: false, message: "Internal Server Error" });
@@ -67,18 +66,23 @@ const getProduct = async (req, res) => {
 
 const deleteProduct = async (req, res) => {
   const { id } = req.params;
-
+  const isValidProduct = await ProductModel.findById(id);
   if (!mongoose.Types.ObjectId.isValid(id)) {
     return res
       .status(404)
-      .json({ sucess: false, message: "Invalid Product Id" });
+      .json({ success: false, message: "Invalid Product Id" });
+  }
+  if (!isValidProduct) {
+    return res
+      .status(404)
+      .json({ success: false, message: "Product is not found" });
   }
 
   try {
-    const deletedProduct = await ProductModel.findByIdAndDelete(id);
+    await ProductModel.findByIdAndDelete(id);
     res
       .status(200)
-      .json({ sucess: true, message: "Product is sucessfully deleted" });
+      .json({ success: true, message: "Product is sucessfully deleted" });
   } catch (error) {
     console.log("Error in delete product", error.message);
     res.status(500), json({ success: false, message: "Internal Server Error" });
@@ -92,4 +96,4 @@ const ProductController = {
   deleteProduct,
 };
 
-export default ProductController
+export default ProductController;

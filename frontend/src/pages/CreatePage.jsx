@@ -13,9 +13,10 @@ import { useProductStore } from "../store/product";
 
 const CreatePage = () => {
   const [newProduct, setNewProduct] = useState({
-    name: "",
-    price: "",
-    image: "",
+    name: "Iphone 16 Pro",
+    price: "800",
+    image:
+      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=880&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   });
   const toast = useToast();
   const { createProduct } = useProductStore();

@@ -29,7 +29,7 @@ const Navbar = () => {
           fontWeight={"bold"}
           textTransform={"uppercase"}
           textAlign={"center"}
-          bgGradient='linear(to-r, cyan.400, blue.500)' 
+          bgGradient="linear(to-r, cyan.400, blue.500)"
           bgClip={"text"}
         >
           <Link to={"/"}>Product Store</Link>
@@ -39,10 +39,10 @@ const Navbar = () => {
             <Button>
               <PiPlusSquare />
             </Button>
-            <Button onClick={toggleColorMode}>
-              {colorMode === "light" ? <IoMoon /> : <LuSun />}
-            </Button>
           </Link>
+          <Button onClick={toggleColorMode}>
+            {colorMode === "light" ? <IoMoon /> : <LuSun />}
+          </Button>
         </HStack>
       </Flex>
     </Container>
