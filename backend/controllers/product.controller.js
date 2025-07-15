@@ -46,7 +46,7 @@ const updateProduct = async (req, res) => {
     });
   } catch (error) {
     console.log("Error in update product", error.message);
-    res.status(404), json({ success: false, message: "Product not found" });
+    res.status(500), json({ success: false, message: "Internal Server Error" });
   }
 };
 
@@ -58,9 +58,10 @@ const getProduct = async (req, res) => {
       message: "Products Retrieve sucessfully",
       data: products,
     });
+    
   } catch (error) {
     console.log("Error in get product", error.message);
-    res.status(401), json({ success: false, message: "Product not found" });
+    res.status(500), json({ success: false, message: "Internal Server Error" });
   }
 };
 
@@ -80,7 +81,7 @@ const deleteProduct = async (req, res) => {
       .json({ sucess: true, message: "Product is sucessfully deleted" });
   } catch (error) {
     console.log("Error in delete product", error.message);
-    res.status(404), json({ success: false, message: "product not found" });
+    res.status(500), json({ success: false, message: "Internal Server Error" });
   }
 };
 
